@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+option csharp_namespace = "EPSTask";
+
+package DiscountCodes;
+
+// The greeting service definition.
+service DiscountCodes {
+  rpc CreateDiscountCodes (CreateDiscountCodesRequest) returns (CreateDiscountCodesResponse);
+  rpc UseDiscountCode (UseDiscountCodeRequest) returns (UseDiscountCodeResponse);
+  rpc GetDiscountCodes (GetDiscountCodesRequest) returns (GetDiscountCodesResponse);
+
+  // Not part of task
+  rpc GetDiscountCodeCount (Empty) returns (GetDiscountCodeCountResponse);
+  rpc ClearDiscountCodes (Empty) returns (ClearDiscountCodesResponse);
+}
+
+message CreateDiscountCodesRequest{
+  uint32 Count = 1;       //* Note: task asks to use 'ushort', but length of short is system dependent 
+  uint32 Length = 2;      //* Note: task asks for 'byte', but there is no byte in proto3. uint32 is variable length, so if we send only one byte, it will be 1 byte
+}
+
+message CreateDiscountCodesResponse{
+  bool Success = 1;
+}
+
+message UseDiscountCodeRequest{
+  string Code = 1;
+}
+
+message UseDiscountCodeResponse{
+  uint32 Result = 1;
+}
+
+message GetDiscountCodesRequest{
+  uint32 Skip = 1;
+  uint32 Take = 2;
+}
+
+message GetDiscountCodesResponse{
+  uint32 Count = 1;
+  repeated string Codes = 2;
+}
+
+message Empty{}
+
+message GetDiscountCodeCountResponse{
+  uint32 Count = 1;
+}
+
+message ClearDiscountCodesResponse{
+  bool Success = 1;
+}

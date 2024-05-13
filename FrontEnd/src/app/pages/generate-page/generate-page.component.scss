@@ -1,0 +1,41 @@
+mat-card {
+    background-color: lightgreen;
+    margin: 10px;
+    padding: 0px 6px 6px 6px;
+}
+
+mat-card-content {
+    padding: 6px 8px;
+}
+
+mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0px 16px;
+}
+
+mat-form-field {
+    margin: 6px;
+}
+
+.card-holder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
+}
+
+.list-interaction-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    button {
+        margin: 8px 0px;
+    }
+}
+
+.sticky {
+    position: -webkit-sticky; /* for browser compatibility */
+    position: sticky;
+    bottom: 0px;
+    padding: 3px;
+  }

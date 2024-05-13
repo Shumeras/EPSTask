@@ -1,0 +1,5 @@
+# Ignoring build & data
+
+bin/
+data/
+obj/
