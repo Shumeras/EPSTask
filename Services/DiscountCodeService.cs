@@ -59,10 +59,12 @@ namespace EPSTask.Services
             if (request.Code.Length != 7 && request.Code.Length != 8)
                 throw new RpcException(new Status(StatusCode.InvalidArgument, "Provided code is invalid"));
 
-            if (!await _storage.ExistsAnyDiscountCodesAsync(new List<string> { request.Code }))
+            var usedCode = new List<string> { request.Code };
+
+            if (!await _storage.ExistsAnyDiscountCodesAsync(usedCode))
                 throw new RpcException(new Status(StatusCode.InvalidArgument, "Provided code is invalid"));
 
-            await _storage.DeleteDiscountCodesAsync(new List<string> { request.Code });
+            await _storage.DeleteDiscountCodesAsync(usedCode);
 
             return new UseDiscountCodeResponse{
                 Result = 0x00                   
